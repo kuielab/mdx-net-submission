@@ -184,201 +184,34 @@ class Conv_TDF_net_trim(nn.Module):
     
 def get_models(name, device, load=True):
     
-    if name=='tdf':   
+    if name=='tdf_extra':   
         return [
             Conv_TDF_net_trim(
                 device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25)', target_name='bass', 
-                lr=0.0001, epoch=860, 
+                model_name='Conv-TDF', target_name='bass', 
+                lr=0.0001, epoch=0, 
                 L=11, l=3, g=32, bn=8, bias=False,
                 dim_f=11, dim_t=8
             ),
             Conv_TDF_net_trim(
                 device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25)', target_name='drums', 
-                lr=0.0002, epoch=300, 
+                model_name='Conv-TDF', target_name='drums', 
+                lr=0.0001, epoch=0, 
                 L=9, l=3, g=32, bn=8, bias=False,
                 dim_f=11, dim_t=7
             ),
             Conv_TDF_net_trim( 
                 device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25)', target_name='other', 
-                lr=0.0001, epoch=860, 
+                model_name='Conv-TDF', target_name='other', 
+                lr=0.0001, epoch=0, 
                 L=11, l=3, g=32, bn=8, bias=False, 
                 dim_f=11, dim_t=8
             ),
             Conv_TDF_net_trim(   
                 device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25, bs16)', target_name='vocals', 
-                lr=0.0002, epoch=1180, 
+                model_name='Conv-TDF', target_name='vocals', 
+                lr=0.0001, epoch=0, 
                 L=11, l=3, g=32, bn=8, bias=False, 
-                dim_f=11, dim_t=8
-            )
-        ]
-    
-    elif name=='tdf+val':   
-        return [
-            Conv_TDF_net_trim(
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25)', target_name='bass', 
-                lr=0.0001, epoch=860, 
-                L=11, l=3, g=32, bn=8, bias=False,
-                dim_f=11, dim_t=8
-            ),
-            Conv_TDF_net_trim(
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25)', target_name='drums', 
-                lr=0.0002, epoch=300, 
-                L=9, l=3, g=32, bn=8, bias=False,
-                dim_f=11, dim_t=7
-            ),
-            Conv_TDF_net_trim( 
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25+val)', target_name='other', 
-                lr=0.0001, epoch=100, 
-                L=11, l=3, g=32, bn=8, bias=False, 
-                dim_f=11, dim_t=8
-            ),
-            Conv_TDF_net_trim(   
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25, bs16)', target_name='vocals', 
-                lr=0.0002, epoch=1180, 
-                L=11, l=3, g=32, bn=8, bias=False, 
-                dim_f=11, dim_t=8
-            )
-        ]
-    
-    elif name=='tdf_extra':   
-        return [
-            Conv_TDF_net_trim(
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25)', target_name='bass', 
-                lr=0.0001, epoch=860, 
-                L=11, l=3, g=32, bn=8, bias=False,
-                dim_f=11, dim_t=8
-            ),
-            Conv_TDF_net_trim(
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25, B)', target_name='drums', 
-                lr=0.0002, epoch=470, 
-                L=9, l=3, g=32, bn=8, bias=False,
-                dim_f=11, dim_t=7
-            ),
-            Conv_TDF_net_trim( 
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25, B)', target_name='other', 
-                lr=0.0001, epoch=830, 
-                L=11, l=3, g=32, bn=8, bias=False, 
-                dim_f=11, dim_t=8
-            ),
-            Conv_TDF_net_trim(   
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, shift_aug25, B)', target_name='vocals', 
-                lr=0.0001, epoch=980, 
-                L=11, l=3, g=32, bn=8, bias=False, 
-                dim_f=11, dim_t=8
-            )
-        ]
-    
-    if name=='blender':   
-        return [
-            Conv_TDF_net_trim(
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, blender)', target_name='bass', 
-                lr=0.0005, epoch=10, 
-                L=3, l=1, g=4, bn=8, bias=False,
-                dim_f=11, dim_t=7
-            ),
-            Conv_TDF_net_trim(
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, blender)', target_name='drums', 
-                lr=0.0001, epoch=860, 
-                L=3, l=1, g=1, bn=8, bias=False,
-                dim_f=11, dim_t=7
-            ),
-            Conv_TDF_net_trim( 
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, blender)', target_name='other', 
-                lr=0.0001, epoch=860, 
-                L=3, l=1, g=1, bn=8, bias=False,
-                dim_f=11, dim_t=7
-            ),
-            Conv_TDF_net_trim(   
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, blender)', target_name='vocals', 
-                lr=0.0001, epoch=860, 
-                L=3, l=1, g=1, bn=8, bias=False,
-                dim_f=11, dim_t=7
-            )
-        ]
-    
-    elif name=='v':
-        return [
-#             Conv_TDF_net_trim(   
-#                 device=device, load=load,
-#                 model_name='Conv-TDF(val)', target_name='*', 
-#                 lr=0.0005, epoch=190, 
-#                 L=7, l=3, g=16, bn=8, bias=False, 
-#                 dim_f=10, dim_t=6
-#             ),
-            Conv_TDF_net_trim(   
-                device=device, load=load,
-                model_name='Conv-TDF(val)', target_name='bass', 
-                lr=0.001, epoch=50000, 
-                L=3, l=1, g=1, bn=8, bias=False, 
-                dim_f=10, dim_t=6
-            ),
-            Conv_TDF_net_trim(   
-                device=device, load=load,
-                model_name='Conv-TDF(val)', target_name='drums', 
-                lr=0.001, epoch=50000, 
-                L=3, l=1, g=1, bn=8, bias=False, 
-                dim_f=10, dim_t=6
-            ),
-            Conv_TDF_net_trim(   
-                device=device, load=load,
-                model_name='Conv-TDF(val)', target_name='other', 
-                lr=0.001, epoch=50000, 
-                L=3, l=1, g=1, bn=8, bias=False, 
-                dim_f=10, dim_t=6
-            ),
-            Conv_TDF_net_trim(   
-                device=device, load=load,
-                model_name='Conv-TDF(val)', target_name='vocals', 
-                lr=0.001, epoch=50000, 
-                L=7, l=3, g=16, bn=8, bias=False, 
-                dim_f=10, dim_t=6
-            )
-        ]
-    
-    elif name=='test':   # submission 70 / time=290 (+demucs) 
-        return [
-            Conv_TDF_net_trim(  
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, HQ)', target_name='drums', 
-                lr=0.0003, epoch=49000, 
-                L=11, l=3, g=36, bn=8, bias=False,
-                dim_f=11, dim_t=8
-            ),
-            Conv_TDF_net_trim( 
-                device=device, load=load,
-                model_name='Conv(waveloss, scale_aug, HQ)', target_name='drums', 
-                lr=0.0005, epoch=15000, 
-                L=11, l=4, g=36, bn=8, bias=False,
-                dim_f=11, dim_t=8
-            ),
-            Conv_TDF_net_trim(
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, HQ)', target_name='drums', 
-                lr=0.0002, epoch=14000, 
-                L=11, l=5, g=36, bn=8, bias=False, 
-                dim_f=11, dim_t=8
-            ),
-            Conv_TDF_net_trim(  
-                device=device, load=load,
-                model_name='Conv-TDF(waveloss, HQ)', target_name='vocals', 
-                lr=0.0003, epoch=49000, bias=False, 
-                L=11, l=3, g=36, bn=8,
                 dim_f=11, dim_t=8
             )
         ]
