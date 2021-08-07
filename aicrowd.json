@@ -4,6 +4,6 @@
   "authors": [
       "kim_min_seok"
   ],
-  "description": "KUIELAB-MDX-Net",
-  "external_dataset_used": false
+  "description": "",
+  "external_dataset_used": true
 }
