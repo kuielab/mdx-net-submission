@@ -33,14 +33,15 @@ def time_limit(seconds):
 
 
 class MusicDemixingPredictor:
-    def __init__(self):
+    def __init__(self, model_name='baseline'):
         self.test_data_path = os.getenv("TEST_DATASET_PATH", os.getcwd() + "/data/test/")
-        self.results_data_path = os.getenv("RESULTS_DATASET_PATH", os.getcwd() + "/data/results/")
+        self.results_data_path = os.getenv("RESULTS_DATASET_PATH", os.getcwd() + "/data/results/" + model_name)
         self.inference_setup_timeout = int(os.getenv("INFERENCE_SETUP_TIMEOUT_SECONDS", "900"))
-        self.inference_per_music_timeout = int(os.getenv("INFERENCE_PER_MUSIC_TIMEOUT_SECONDS", "240"))
+        self.inference_per_music_timeout = int(os.getenv("INFERENCE_PER_MUSIC_TIMEOUT_SECONDS", "1000"))
         self.partial_run = os.getenv("PARTIAL_RUN_MUSIC_NAMES", None)
         self.results = []
         self.current_music_name = None
+        self.model_name = model_name
 
     def get_all_music_names(self):
         valid_music_names = None
@@ -106,6 +107,7 @@ class MusicDemixingPredictor:
             scores[music_name]["sdr_other"] = song_score[2]
             scores[music_name]["sdr_vocals"] = song_score[3]
             scores[music_name]["sdr"] = np.mean(song_score)
+            print(scores[music_name])
         return scores
 
 
@@ -123,8 +125,9 @@ class MusicDemixingPredictor:
         aicrowd_helpers.execution_running()
 
         music_names = self.get_all_music_names()
-
+     
         for music_name in music_names:
+            print(self.get_music_file_location(music_name))
             with time_limit(self.inference_per_music_timeout):
                 self.prediction(mixture_file_path=self.get_music_file_location(music_name),
                                 bass_file_path=self.get_music_file_location(music_name, "bass"),

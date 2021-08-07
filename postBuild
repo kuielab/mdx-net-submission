@@ -1,0 +1,4 @@
+#!/bin/bash
+pip install aicrowd_api coloredlogs numpy loguru boto3 openunmix musdb SoundFile scipy norbert demucs
+pip install asteroid>=0.5.0
+python download_demucs.py

@@ -1,0 +1,10 @@
+name: pytorch
+channels:
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  - pip:
+    - onnxruntime==1.7.0
+prefix: /home/ielab/miniconda3/envs/pytorch
+
