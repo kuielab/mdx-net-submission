@@ -205,28 +205,28 @@ def get_models(name, device, load=True, model_path=model_path):
             Conv_TDF_net_trim(
                 device=device, load=load, model_path=model_path,
                 model_name='Conv-TDF', target_name='bass', 
-                lr=0.0001, epoch=1720, 
+                lr=0.0001, epoch=0, 
                 L=11, l=3, g=32, bn=8, bias=False,
                 dim_f=11, dim_t=8
             ),
             Conv_TDF_net_trim(
                 device=device, load=load, model_path=model_path,
                 model_name='Conv-TDF', target_name='drums', 
-                lr=0.0001, epoch=600, 
+                lr=0.0001, epoch=0, 
                 L=11, l=3, g=32, bn=8, bias=False,
                 dim_f=11, dim_t=8
             ),
             Conv_TDF_net_trim( 
                 device=device, load=load, model_path=model_path,
                 model_name='Conv-TDF', target_name='other', 
-                lr=0.0001, epoch=1720, 
+                lr=0.0001, epoch=0, 
                 L=11, l=3, g=32, bn=8, bias=False, 
                 dim_f=11, dim_t=8
             ),
             Conv_TDF_net_trim(   
                 device=device, load=load, model_path=model_path,
                 model_name='Conv-TDF', target_name='vocals', 
-                lr=0.0002, epoch=2360, 
+                lr=0.0002, epoch=0, 
                 L=11, l=3, g=32, bn=8, bias=False, 
                 dim_f=11, dim_t=8
             )
