@@ -21,4 +21,4 @@ def get_url(name):
 name = 'demucs'
 url = get_url(name)
 state = torch.hub.load_state_dict_from_url(url, map_location='cpu', check_hash=True)
-torch.save(state, f'model/{name}.pt')
+torch.save(state, f'model/{name}.ckpt')
