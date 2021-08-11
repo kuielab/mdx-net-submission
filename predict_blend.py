@@ -15,7 +15,7 @@ class Predictor(MusicDemixingPredictor):
     def prediction_setup(self):
         self.models = get_models(model_name, load=False, device=device)
         self.demucs = Demucs(sources=["drums", "bass", "other", "vocals"], channels=48 if '48' in demucs_name else 64)
-        self.demucs.load_state_dict(torch.load(f'model/{demucs_name}.pt'))
+        self.demucs.load_state_dict(torch.load(f'model/{demucs_name}.ckpt'))
         self.demucs.eval()
         
     def prediction(self, mixture_file_path, bass_file_path, drums_file_path, other_file_path, vocals_file_path):

@@ -131,7 +131,7 @@ class Conv_TDF_net_trim(nn.Module):
             model_name = model_name[:model_name.index('(')+1] + model_cfg + stft_cfg + model_name[model_name.index('(')+1:]
             try:
                 self.load_state_dict(
-                    torch.load('{0}/{1}/{2}_lr{3}_e{4:05}.pt'.format(model_path, model_name, target_name, lr, epoch), map_location=device)
+                    torch.load('{0}/{1}/{2}_lr{3}_e{4:05}.ckpt'.format(model_path, model_name, target_name, lr, epoch), map_location=device)
                 )
                 print(f'Loading model ({target_name})')
             except FileNotFoundError:
