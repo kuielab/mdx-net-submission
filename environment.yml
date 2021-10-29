@@ -1,4 +1,4 @@
-name: pytorch
+name: mdx-submit
 channels:
   - conda-forge
   - anaconda

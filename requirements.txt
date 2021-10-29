@@ -10,3 +10,5 @@ scipy
 norbert
 asteroid>=0.5.0
 demucs
+museval
+wandb
