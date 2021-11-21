@@ -130,3 +130,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+onnx_A.zip
+onnx_B.zip
+onnx_A/*
+onnx_B/*

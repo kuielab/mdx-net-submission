@@ -3,3 +3,5 @@ pip install aicrowd_api coloredlogs numpy loguru boto3 openunmix musdb SoundFile
 pip install asteroid>=0.5.0
 pip install demucs==2.0.3
 python download_demucs.py
+wget https://zenodo.org/record/5717356/files/onnx_A.zip
+unzip onnx_A
