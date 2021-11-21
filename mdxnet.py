@@ -13,7 +13,7 @@ class MDXNet(BasicPredictor):
         if mode == 'leaderboard_A':
             super().__init__(use_mixer=True, demucs='demucs', device=device)
             self.tfc_tdf_u_nets_v2 = get_models('leaderboard_A', device=device)
-            self.onnx_name = 'onnx_A_wget'
+            self.onnx_name = 'onnx_A'
             self.b = np.array([[[0.5]], [[0.5]], [[0.7]], [[0.9]]])
 
         else:
