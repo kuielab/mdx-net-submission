@@ -1,11 +1,8 @@
 import musdb
 import museval
-import torch
-
 import wandb
-from mdxnet import MDXNet
 
-from base_model import BasicPredictor
+from mdxnet import MDXNet
 
 dataset_dev = musdb.DB(root='D:\\repos\\musdb18_dev_wav', subsets='test', is_wav=True)
 dataset_hq = musdb.DB(root='D:\\repos\\musdb18hq', subsets='test', is_wav=True)
@@ -65,4 +62,4 @@ def eval_dataset(_dataset, _predictor):
     print(results)
 
 
-eval_dataset(dataset_dev, final_predictor)
+eval_dataset(dataset_hq, final_predictor)

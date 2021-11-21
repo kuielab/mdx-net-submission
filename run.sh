@@ -1,2 +1,2 @@
 #!/bin/bash
-python predict_blend.py
+python predict.py
