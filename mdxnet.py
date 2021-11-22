@@ -14,10 +14,13 @@ class MDXNet(BasicPredictor):
             super().__init__(use_mixer=True, demucs='demucs', device=device)
             self.tfc_tdf_u_nets_v2 = get_models('leaderboard_A', device=device)
             self.onnx_name = 'onnx_A'
-            self.b = np.array([[[0.5]], [[0.5]], [[0.7]], [[0.9]]])
 
         else:
-            super().__init__(use_mixer=True, demucs='demucs_extra')
+            super().__init__(use_mixer=False, demucs='demucs_extra')
+            self.tfc_tdf_u_nets_v2 = get_models('leaderboard_B', device=device)
+            self.onnx_name = 'onnx_B'
+
+        self.b = np.array([[[0.5]], [[0.5]], [[0.7]], [[0.9]]])
 
     def demix(self, mix):
         base_out = self.demix_base(mix, self.use_mixer)
