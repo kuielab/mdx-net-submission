@@ -5,5 +5,5 @@
       "kim_min_seok"
   ],
   "description": "KUIELAB-MDX-Net",
-  "external_dataset_used": false
+  "external_dataset_used": true
 }
