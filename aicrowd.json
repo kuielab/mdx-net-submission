@@ -2,7 +2,7 @@
   "challenge_id": "evaluations-api-music-demixing",
   "grader_id": "evaluations-api-music-demixing",
   "authors": [
-      "kim_min_seok"
+      "woosung choi"
   ],
   "description": "KUIELAB-MDX-Net",
   "external_dataset_used": true

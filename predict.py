@@ -9,8 +9,8 @@ device = torch.device('cpu')
 
 class Predictor(MusicDemixingPredictor):
 
-    def __init__(self, model_name='kuielab_mdx_net', leaderboard='a'):
-        super().__init__(model_name)
+    def __init__(self, leaderboard='a'):
+        super().__init__()
         self.leaderboard = leaderboard.lower()
 
     def prediction_setup(self):
