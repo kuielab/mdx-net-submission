@@ -38,6 +38,10 @@ conda activate mdx-submit
 
 to go back into the environment you have installed MDX's dependencies in.
 
+## Custom models
+
+For custom models (such as the [higher quality vocal model trained by UVR team](https://github.com/Anjok07/ultimatevocalremovergui/releases/tag/MDX-Net-B)), please replace the relevant models in `./onnx/`.
+
 ## Usage
 
 After successful installation, you can put the songs you wish to separate as `./data/test/SONGNAME/mixture.wav`, and run either `run.sh` or
