@@ -24,16 +24,17 @@ def time_limit(seconds):
     def signal_handler(signum, frame):
         raise TimeoutException("Prediction timed out!")
 
-    signal.signal(signal.SIGALRM, signal_handler)
-    signal.alarm(seconds)
-    try:
-        yield
-    finally:
-        signal.alarm(0)
+    # signal.signal(signal.SIGALRM, signal_handler)
+    # signal.alarm(seconds)
+    # try:
+    #     yield
+    # finally:
+    #     signal.alarm(0)
+    yield
 
 
 class MusicDemixingPredictor:
-    def __init__(self, model_name='baseline'):
+    def __init__(self, model_name='kuielab_mdxnet_A'):
         self.test_data_path = os.getenv("TEST_DATASET_PATH", os.getcwd() + "/data/test/")
         self.results_data_path = os.getenv("RESULTS_DATASET_PATH", os.getcwd() + "/data/results/" + model_name)
         self.inference_setup_timeout = int(os.getenv("INFERENCE_SETUP_TIMEOUT_SECONDS", "900"))

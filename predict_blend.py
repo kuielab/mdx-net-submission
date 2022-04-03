@@ -86,7 +86,7 @@ class Predictor(MusicDemixingPredictor):
 
 model_name = 'tdf'
 demucs_name = 'demucs'
-onnx_name = 'onnx'
+onnx_name = 'onnx_A'
 
 b = np.array([[[0.5]], [[0.5]], [[0.7]], [[0.9]]])
 

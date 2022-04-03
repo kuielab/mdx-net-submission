@@ -27,6 +27,10 @@ conda env create -f environment.yml -n mdx-submit
 conda activate mdx-submit
 pip install -r requirements.txt
 python download_demucs.py
+wget https://zenodo.org/record/5717356/files/onnx_A.zip
+unzip onnx_A
+wget https://zenodo.org/record/5717356/files/mixer.ckpt
+mv mixer.ckpt model
 ```
 
 Every time when you open a new terminal, conda will default to environment `base`.
@@ -50,5 +54,5 @@ After successful installation, you can put the songs you wish to separate as `./
 python predict_blend.py
 ```
 
-After the separation completes, the results will be saved in `./data/results/baseline/SONGNAME/`.
+After the separation completes, the results will be saved in `./data/results/kuielab_mdxnet_A/SONGNAME/`.
 
