@@ -1,11 +1,56 @@
-import torch
+from abc import abstractmethod
+
 import numpy as np
-from configs import get_models
-from base_model import BasicPredictor
 import onnxruntime as ort
+import torch
+import torch.nn as nn
+from demucs.model import Demucs
+from demucs.utils import apply_model
+
+from mdxnet.configs import get_models
+
+dim_s = 4
 
 
-class MDXNet(BasicPredictor):
+class BasicPredictor:
+
+    def __init__(self, use_mixer, demucs=None, device=torch.device('cpu')) -> None:
+
+        if use_mixer:
+            self.mixer = Mixer(device)
+            self.mixer.eval()
+
+        if demucs is not None:
+            assert demucs in ['demucs', 'demucs_extra']
+            self.demucs = Demucs(sources=["drums", "bass", "other", "vocals"],
+                                 channels=48 if '48' in demucs else 64)
+            self.demucs.load_state_dict(torch.load(f'model/{demucs}.ckpt'))
+
+        self.use_mixer = use_mixer
+        self.use_demucs = demucs
+
+    @abstractmethod
+    def demix(self, mix):
+        pass
+
+    @abstractmethod
+    def demix_base(self, mix, mixer):
+        pass
+
+    def demix_demucs(self, mix):
+        mix = torch.tensor(mix, dtype=torch.float32)
+        mean, std = mix.mean(), mix.std()
+        mix = (mix - mean) / std
+
+        with torch.no_grad():
+            sources = apply_model(self.demucs, mix, split=True, overlap=0.5)
+
+        sources = (sources * std + mean).cpu().numpy()
+        sources[[0, 1]] = sources[[1, 0]]
+        return sources
+
+
+class PretrainedMDXNet(BasicPredictor):
 
     def __init__(self, device, mode='leaderboard_A') -> None:
         assert mode in ['leaderboard_A', 'leaderboard_B']
@@ -64,3 +109,19 @@ class MDXNet(BasicPredictor):
                 x = torch.cat([sources, mix.unsqueeze(0)], 0)
                 sources = self.mixer(x)
         return np.array(sources)
+
+
+class Mixer(nn.Module):
+    def __init__(self, device):
+        super(Mixer, self).__init__()
+
+        self.linear = nn.Linear((dim_s + 1) * 2, dim_s * 2, bias=False)
+
+        self.load_state_dict(
+            torch.load('model/mixer.ckpt', map_location=device)
+        )
+
+    def forward(self, x):
+        x = x.reshape(1, (dim_s + 1) * 2, -1).transpose(-1, -2)
+        x = self.linear(x)
+        return x.transpose(-1, -2).reshape(dim_s, 2, -1)

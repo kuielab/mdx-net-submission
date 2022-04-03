@@ -2,7 +2,7 @@ import musdb
 import wandb
 import numpy as np
 
-from base_model import BasicPredictor
+from mdxnet.base_model import BasicPredictor
 
 dataset_dev = musdb.DB(root='D:\\repos\\musdb18_dev_wav', subsets='test', is_wav=True)
 dataset_hq = musdb.DB(root='D:\\repos\\musdb18hq', subsets='test', is_wav=True)

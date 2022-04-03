@@ -2,7 +2,7 @@ import soundfile as sf
 import torch
 
 from evaluator.music_demixing import MusicDemixingPredictor
-from mdxnet import MDXNet
+from mdxnet.models import PretrainedMDXNet
 
 device = torch.device('cpu')
 
@@ -14,7 +14,7 @@ class Predictor(MusicDemixingPredictor):
         self.leaderboard = leaderboard.lower()
 
     def prediction_setup(self):
-        self.model = MDXNet(device, 'leaderboard_A' if self.leaderboard == 'a' else 'leaderboard_B')
+        self.model = PretrainedMDXNet(device, 'leaderboard_A' if self.leaderboard == 'a' else 'leaderboard_B')
 
     def prediction(self, mixture_file_path, bass_file_path, drums_file_path, other_file_path, vocals_file_path):
         file_paths = [bass_file_path, drums_file_path, other_file_path, vocals_file_path]

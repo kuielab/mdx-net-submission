@@ -79,22 +79,6 @@ class Conv_TDF_net_trim_lbb(nn.Module):
         return x.reshape([-1,c,self.chunk_size])
 
 
-class Mixer(nn.Module):
-    def __init__(self, device):
-        super(Mixer, self).__init__()
-
-        self.linear = nn.Linear((dim_s + 1) * 2, dim_s * 2, bias=False)
-
-        self.load_state_dict(
-            torch.load('model/mixer.ckpt', map_location=device)
-        )
-
-    def forward(self, x):
-        x = x.reshape(1, (dim_s + 1) * 2, -1).transpose(-1, -2)
-        x = self.linear(x)
-        return x.transpose(-1, -2).reshape(dim_s, 2, -1)
-
-
 def get_models(mode, device, load=False):
     assert mode in ['leaderboard_A', 'leaderboard_B']
 

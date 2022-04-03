@@ -2,13 +2,13 @@ import musdb
 import museval
 import wandb
 
-from mdxnet import MDXNet
+from mdxnet import PretrainedMDXNet
 
 dataset_dev = musdb.DB(root='D:\\repos\\musdb18_dev_wav', subsets='test', is_wav=True)
 dataset_hq = musdb.DB(root='D:\\repos\\musdb18hq', subsets='test', is_wav=True)
 
 results = museval.EvalStore(frames_agg='median', tracks_agg='median')
-final_predictor = MDXNet(device='cpu', mode='leaderboard_B')
+final_predictor = PretrainedMDXNet(device='cpu', mode='leaderboard_B')
 
 def eval_dataset(_dataset, _predictor):
 
