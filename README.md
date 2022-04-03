@@ -6,6 +6,7 @@ This branch contains the source code and the pretrained model that is submitted 
 
 <div style="size: 2em; font-weight: bold;">
 The repository supports Linux and <a href="https://github.com/kuielab/mdx-net-submission/issues/1">does not support Windows</a> (MacOS untested). <br />
+(updated) it may work on Windows as well. I tested on my laptop and it worked fine. Please try it! <br />
 The separated stems each have a different <a href="https://ws-choi.github.io/personal/presentations/slide/2021-08-21-aicrowd#/2/1">frequency cutoff</a> applied. This is inherent to the approach of the MDX-Net code, which means that you would not obtain lossless stem tracks as compared to the original.
 </div>
 
