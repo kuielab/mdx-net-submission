@@ -5,21 +5,19 @@ This branch contains the source code and the pretrained model that is submitted 
 ## Precautions
 
 <div style="size: 2em; font-weight: bold;">
-The repository supports Linux and <a href="https://github.com/kuielab/mdx-net-submission/issues/1">does not support Windows</a> (MacOS untested). <br />
-(updated) it may work on Windows as well. I tested on my laptop and it worked fine. Please try it! <br />
+The repository supports Linux and Windows (MacOS untested). <br />
 The separated stems each have a different <a href="https://ws-choi.github.io/personal/presentations/slide/2021-08-21-aicrowd#/2/1">frequency cutoff</a> applied. This is inherent to the approach of the MDX-Net code, which means that you would not obtain lossless stem tracks as compared to the original.
 </div>
 
 ## Installation
 
-Setup [git-lfs](https://git-lfs.github.com/) first. You will need it to download the models inside this repository.
-You'd also need [conda](https://docs.conda.io/en/latest/miniconda.html).
-
-After all those are installed, clone this branch:
+Set up [conda](https://docs.conda.io/en/latest/miniconda.html) first. After it's installed, clone this branch:
 
 ```bash
 git clone -b leaderboard_A https://github.com/kuielab/mdx-net-submission.git
 ```
+
+### Linux
 
 In the cloned repository directory, do
 
@@ -34,14 +32,19 @@ wget https://zenodo.org/record/5717356/files/mixer.ckpt
 mv mixer.ckpt model
 ```
 
-Every time when you open a new terminal, conda will default to environment `base`.
-Just do 
+### Windows
+
+In the cloned repository directory, using the conda powershell prompt:
 
 ```bash
+conda env create -f environment.yml -n mdx-submit
 conda activate mdx-submit
+pip install -r requirements.txt
+python download_demucs.py
+Invoke-WebRequest -Uri https://zenodo.org/record/5717356/files/onnx_A.zip -OutFile onnx_A.zip
+Expand-Archive onnx_A.zip -DestinationPath .
+Invoke-WebRequest -Uri https://zenodo.org/record/5717356/files/mixer.ckpt -OutFile ./model/mixer.ckpt
 ```
-
-to go back into the environment you have installed MDX's dependencies in.
 
 ## Custom models
 
@@ -57,3 +60,11 @@ python predict_blend.py
 
 After the separation completes, the results will be saved in `./data/results/kuielab_mdxnet_A/SONGNAME/`.
 
+Also, every time when you open a new terminal / conda prompt, conda will default to environment `base`.
+Just do 
+
+```bash
+conda activate mdx-submit
+```
+
+to go back into the environment you have installed MDX's dependencies in.
