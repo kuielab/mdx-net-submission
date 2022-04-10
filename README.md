@@ -48,7 +48,7 @@ Invoke-WebRequest -Uri https://zenodo.org/record/5717356/files/mixer.ckpt -OutFi
 
 ## Custom models
 
-For custom models (such as the [higher quality vocal model trained by UVR team](https://github.com/Anjok07/ultimatevocalremovergui/releases/tag/MDX-Net-B)), please replace the relevant models in `./onnx/`.
+For custom models (such as the [higher quality vocal model trained by UVR team](https://github.com/Anjok07/ultimatevocalremovergui/releases/tag/MDX-Net-B)), please replace the relevant models in `./onnx_A/`.
 
 ## Usage
 
