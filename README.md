@@ -26,7 +26,7 @@ conda env create -f environment.yml -n mdx-submit
 conda activate mdx-submit
 pip install -r requirements.txt
 python download_demucs.py
-wget https://zenodo.org/record/5717356/files/onnx_B.zip
+wget https://zenodo.org/record/6513062/files/onnx_B.zip
 unzip onnx_B
 ```
 
@@ -39,7 +39,7 @@ conda env create -f environment.yml -n mdx-submit
 conda activate mdx-submit
 pip install -r requirements.txt
 python download_demucs.py
-Invoke-WebRequest -Uri https://zenodo.org/record/5717356/files/onnx_B.zip -OutFile onnx_B.zip
+Invoke-WebRequest -Uri https://zenodo.org/record/6513062/files/onnx_B.zip -OutFile onnx_B.zip
 Expand-Archive onnx_B.zip -DestinationPath .
 ```
 
