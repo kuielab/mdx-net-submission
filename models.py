@@ -5,7 +5,7 @@ import numpy as np
 
 dim_c = 4
 k = 3
-model_path = 'model'
+model_path = 'data/weights'
 n_fft_scale = {'bass': 8, 'drums':2, 'other':4, 'vocals':3, '*':2}
 
 
