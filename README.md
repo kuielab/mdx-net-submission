@@ -5,7 +5,7 @@ This branch contains the source code and the pretrained model that is submitted 
 ## Precautions
 
 <div style="size: 2em; font-weight: bold;">
-The repository supports Linux and MacOS(also on m1 Mac), but <a href="https://github.com/kuielab/mdx-net-submission/issues/1">does not support Windows</a> . <br />
+The repository supports Linux and MacOS (Intel and M1), and <a href="https://github.com/kuielab/mdx-net-submission/issues/1">does not support Windows</a> . <br />
 The separated stems each have a different <a href="https://ws-choi.github.io/personal/presentations/slide/2021-08-21-aicrowd#/2/1">frequency cutoff</a> applied. This is inherent to the approach of the MDX-Net code, which means that you would not obtain lossless stem tracks as compared to the original.
 </div>
 
@@ -20,6 +20,8 @@ After all those are installed, clone this branch:
 git clone -b leaderboard_B https://github.com/kuielab/mdx-net-submission.git
 ```
 
+### Linux
+
 In the cloned repository directory, do
 
 ```bash
@@ -29,21 +31,13 @@ pip install -r requirements.txt
 python download_demucs.py
 ```
 
-Specially, when using a m1 mac, change the first step as below shows, as we will use onnxruntime-silicon instead of onnxruntime. If encounter the problem of libsndfile, just install libsndfile(use package managers like homebrew is preferred) and put libsndfile.dylib into the dirctory it tells you.
+### MacOS
 
-```bash
-conda env create -f environment-m1.yml -n mdx-submit
-```
+For Intel macs, the procedure is the same as [that on Linux](#linux).
 
+For M1 macs, use `environment-m1.yml` in the first command instead of `environment.yml`.
 
-Every time when you open a new terminal, conda will default to environment `base`.
-Just do 
-
-```bash
-conda activate mdx-submit
-```
-
-to go back into the environment you have installed MDX's dependencies in.
+If it errors out with not finding `libsndfile`, install it using your preferred package manager and put `libsndfile.dylib` into the directory it tells you.
 
 ## Custom models
 
@@ -58,3 +52,12 @@ python predict_blend.py
 ```
 
 After the separation completes, the results will be saved in `./data/results/baseline/SONGNAME/`.
+
+Also, every time when you open a new terminal / conda prompt, conda will default to environment `base`.
+Just do 
+
+```bash
+conda activate mdx-submit
+```
+
+to go back into the environment you have installed MDX's dependencies in.
