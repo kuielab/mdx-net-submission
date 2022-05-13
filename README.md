@@ -5,7 +5,7 @@ This branch contains the source code and the pretrained model that is submitted 
 ## Precautions
 
 <div style="size: 2em; font-weight: bold;">
-The repository supports Linux and <a href="https://github.com/kuielab/mdx-net-submission/issues/1">does not support Windows</a> (MacOS untested). <br />
+The repository supports Linux and MacOS(also on m1 Mac), but <a href="https://github.com/kuielab/mdx-net-submission/issues/1">does not support Windows</a> . <br />
 The separated stems each have a different <a href="https://ws-choi.github.io/personal/presentations/slide/2021-08-21-aicrowd#/2/1">frequency cutoff</a> applied. This is inherent to the approach of the MDX-Net code, which means that you would not obtain lossless stem tracks as compared to the original.
 </div>
 
@@ -28,6 +28,13 @@ conda activate mdx-submit
 pip install -r requirements.txt
 python download_demucs.py
 ```
+
+Specially, when using a m1 mac, change the first step as below shows, as we will use onnxruntime-silicon instead of onnxruntime. If encounter the problem of libsndfile, just install libsndfile(use package managers like homebrew is preferred) and put libsndfile.dylib into the dirctory it tells you.
+
+```bash
+conda env create -f environment-m1.yml -n mdx-submit
+```
+
 
 Every time when you open a new terminal, conda will default to environment `base`.
 Just do 
