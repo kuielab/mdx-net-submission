@@ -19,6 +19,8 @@ After all those are installed, clone this branch:
 ```bash
 git clone -b leaderboard_B https://github.com/kuielab/mdx-net-submission.git
 ```
+git-lfs does not download the models if the repo has reached its quota, only placing pointer files there. They should be around 20 something MB each.
+If the onnx models aren't there, you can get them from [here](https://zenodo.org/record/6513062/files/onnx_B.zip).
 
 ### Linux
 
