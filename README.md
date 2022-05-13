@@ -29,7 +29,7 @@ pip install -r requirements.txt
 python download_demucs.py
 ```
 
-Specially, if you are using a m1 mac, change the first step to, as we will use onnxruntime-silicon instead of onnxruntime. And if you encounter the problem of libsndfile, just install libsndfile and put libsndfile.dylib on the dirctory it tells you.
+Specially, when using a m1 mac, change the first step as below shows, as we will use onnxruntime-silicon instead of onnxruntime. If encounter the problem of libsndfile, just install libsndfile(use package managers like homebrew is preferred) and put libsndfile.dylib into the dirctory it tells you.
 
 ```bash
 conda env create -f environment-m1.yml -n mdx-submit
