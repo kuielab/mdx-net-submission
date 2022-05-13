@@ -5,7 +5,7 @@ This branch contains the source code and the pretrained model that is submitted 
 ## Precautions
 
 <div style="size: 2em; font-weight: bold;">
-The repository supports Linux and Windows (MacOS untested). <br />
+The repository supports Linux, MacOS (Intel and M1) and Windows. <br />
 The separated stems each have a different <a href="https://ws-choi.github.io/personal/presentations/slide/2021-08-21-aicrowd#/2/1">frequency cutoff</a> applied. This is inherent to the approach of the MDX-Net code, which means that you would not obtain lossless stem tracks as compared to the original.
 </div>
 
@@ -31,6 +31,14 @@ unzip onnx_A
 wget https://zenodo.org/record/5717356/files/mixer.ckpt
 mv mixer.ckpt model
 ```
+
+### MacOS
+
+For Intel macs, the procedure is the same as [that on Linux](#linux).
+
+For M1 macs, use `environment-m1.yml` in the first command instead of `environment.yml`.
+
+If it errors out with not finding `libsndfile`, install it using your preferred package manager and put `libsndfile.dylib` into the directory it tells you.
 
 ### Windows
 
