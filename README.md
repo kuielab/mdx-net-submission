@@ -5,7 +5,7 @@ This branch contains the source code and the pretrained model that is submitted 
 ## Precautions
 
 <div style="size: 2em; font-weight: bold;">
-The repository supports Linux and <a href="https://github.com/kuielab/mdx-net-submission/issues/1">does not support Windows</a> (MacOS untested). <br />
+The repository supports Linux and Windows (MacOS untested). <br />
 The separated stems each have a different <a href="https://ws-choi.github.io/personal/presentations/slide/2021-08-21-aicrowd#/2/1">frequency cutoff</a> applied. This is inherent to the approach of the MDX-Net code, which means that you would not obtain lossless stem tracks as compared to the original.
 </div>
 
@@ -51,7 +51,7 @@ After successful installation, you can put the songs you wish to separate as `./
 python predict_blend.py
 ```
 
-After the separation completes, the results will be saved in `./data/results/kuielab_mdxnet_A/SONGNAME/`.
+After the separation completes, the results will be saved in `./data/results/kuielab_mdxnet_B/SONGNAME/`.
 
 Also, every time when you open a new terminal / conda prompt, conda will default to environment `base`.
 Just do 
