@@ -10,6 +10,7 @@ import signal
 from contextlib import contextmanager
 from os import listdir
 from os.path import isfile, join
+from sys import platform
 
 import soundfile as sf
 import numpy as np
@@ -21,15 +22,18 @@ class TimeoutException(Exception): pass
 
 @contextmanager
 def time_limit(seconds):
-    def signal_handler(signum, frame):
-        raise TimeoutException("Prediction timed out!")
+    if platform != "win32":
+        def signal_handler(signum, frame):
+            raise TimeoutException("Prediction timed out!")
 
-    signal.signal(signal.SIGALRM, signal_handler)
-    signal.alarm(seconds)
-    try:
+            signal.signal(signal.SIGALRM, signal_handler)
+            signal.alarm(seconds)
+            try:
+                yield
+            finally:
+                signal.alarm(0)
+    else:
         yield
-    finally:
-        signal.alarm(0)
 
 
 class MusicDemixingPredictor:
