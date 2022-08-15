@@ -57,7 +57,10 @@ class Predictor(MusicDemixingPredictor):
                 tar_signal = tar_waves[:,:,trim:-trim].transpose(0,1).reshape(2, -1).numpy()[:, :-pad]
         
             sources.append(tar_signal)
+        print("\n======================================")
+        print("Time to execute demix_base(self, mix):")
         print(time()-start_time)
+        print("======================================\n")
         return np.array(sources)
     
     def demix_demucs(self, mix):
@@ -71,7 +74,10 @@ class Predictor(MusicDemixingPredictor):
             
         sources = (sources * ref.std() + ref.mean()).cpu().numpy()
         sources[[0,1]] = sources[[1,0]]
+        print("\n========================================")
+        print("Time to execute demix_demucs(self, mix):")
         print(time() - start_time)
+        print("========================================\n")
         return sources
         
 
