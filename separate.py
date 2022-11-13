@@ -147,7 +147,7 @@ def separate(args: argparse.Namespace):
     onnx_name = args.onnx_name
     mixture_path = args.mixture_dir_path
     results_data_path = args.results_data_path
-    batch_size = int(args.batch_size)
+    batch_size = int(args.batch_size) if args.batch_size is not None else None
     b = np.array([[[0.5]], [[0.5]], [[0.7]], [[0.9]]])
     submission = Seprator(model_name, demucs_name, onnx_name, b, batch_size)
     submission.separate(mixture_path, results_data_path)
